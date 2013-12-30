@@ -44,7 +44,11 @@
                         var keyY = Math.floor((((y + offset) - (windowY - keyareaY)) * 4)/keyareaY);
                         var keyX = Math.floor(((x * keyboard[keyY].length)/keyareaX));
                         var key = keyboard[keyY][keyX];
-                        var str = $('#outputText').html() + key;
+                        if (($('#outputText').text() == " ") && ($('#outputText').text().length == 1)) {
+                            var str = key;
+                        } else {
+                            var str = $('#outputText').html() + key;
+                        }
                         $('#outputText').html(str);
                     } else {
                         $('#keyarea').css("display", "none");
