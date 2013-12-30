@@ -5,25 +5,24 @@
 </head>
 
     <body>
-    <div id="topBar"></div>
     <div id="touch"><pre><p id="outputText"> </p></pre></div>
     <div id="keyarea"></div>
 
     <script type="text/javascript">
         
-        var offset = 70;
+        var offset = 10;
         var inputY = parseInt($('#keyarea').css("margin-top"));
         var windowY = parseInt($('#touch').css("height"));
         var windowX = parseInt($('#touch').css("width"));
 
         var keyboard = [["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"], 
             ["", "a", "s", "d", "f", "g", "h", "j", "k", "l", ""], 
-            ["SHIFT", "SHIFT", "z", "x", "c", "v", "b", "n", "m", "DEL", "DEL"], 
-            ["NUM", "NUM", "EMOJI", "EMOJI", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "RETURN", "RETURN", "RETURN", "RETURN"]];
+            ["S", "S", "z", "x", "c", "v", "b", "n", "m", "D", "D"], 
+            ["N", "N", "E", "E", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "\n", "\n", "\n", "\n"]];
 
         $(document).ready(function() {
             $('body').on("tap", function(e) {
-                console.log("hello");
+           
                 if ($('#keyarea').css("display") == "none") {
                     $('#keyarea').css("display", "block");
                 } else {
@@ -36,6 +35,10 @@
                     var upper = (windowY - inputY);
                     //Do all other bounds
                     if (y >= upper) {
+                        if (($('#outputText').text().length % 33) == 0) {
+                            $('#outputText').html($('#outputText').html() + "\n");
+                        }
+
                         var keyY = Math.floor((((y + offset) - (windowY - keyareaY)) * 4)/keyareaY);
                         var keyX = Math.floor(((x * keyboard[keyY].length)/keyareaX));
                         var key = keyboard[keyY][keyX];

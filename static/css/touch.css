@@ -1,10 +1,10 @@
 body{
-    width:960px;
-    height:640px;
+    width:640px;
+    height:900px;
 }
 
 #touch{
-    height:960px;
+    height:900px;
     width:640px;
     background-color: red;
     z-index: 1;
@@ -12,36 +12,20 @@ body{
     position: absolute;
 }
 
-#output{
-    width:640px;
-    height: 200px;
-    background-color: purple;
-    z-index: 0;
-    position: absolute;
-    margin-top: 60px;
-}
-
 #keyarea{
     width:640px;
     height:450px;
     background-color: black;
-    z-index:3;
+    z-index:2;
     opacity:0.5;
     position: absolute;
-    margin-top:510px;
+    margin-top:450px;
     display:none;
-}
-
-#topBar{
-    width:640px;
-    height:60px;
-    background-color: black;
-    z-index: 3;
-    position: absolute;
 }
 
 #outputText{
     color:white;
+    width:620px;
     padding: 10px;
     font-size:30px;
     line-height: 32px;
