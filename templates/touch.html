@@ -1,0 +1,54 @@
+<head>
+    <script type="text/javascript" src="/static/js/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="/static/css/touch.css">
+    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head>
+
+    <body>
+    <div id="topBar"></div>
+    <div id="touch"></div>
+    <div id="output"><pre><p id="outputText"> </p></pre></div>
+    <div id="keyarea"></div>
+
+    <script type="text/javascript">
+        
+        var offset = 70;
+        var inputY = parseInt($('#keyarea').css("margin-top"));
+        var windowY = parseInt($('#touch').css("height"));
+        var windowX = parseInt($('#touch').css("width"));
+
+        var keyboard = [["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"], 
+            ["", "a", "s", "d", "f", "g", "h", "j", "k", "l", ""], 
+            ["SHIFT", "SHIFT", "z", "x", "c", "v", "b", "n", "m", "DEL", "DEL"], 
+            ["NUM", "NUM", "EMOJI", "EMOJI", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "RETURN", "RETURN", "RETURN", "RETURN"]];
+
+        $(document).ready(function() {
+            $('body').on("tap", function(e) {
+                console.log("hello");
+                if ($('#keyarea').css("display") == "none") {
+                    $('#keyarea').css("display", "block");
+                } else {
+                    var keyareaY = parseInt($('#keyarea').css("height"));
+                    var keyareaX = parseInt($('#keyarea').css("width"));
+
+                    var x = e.pageX;
+                    var y = e.pageY - offset;
+                    
+                    var upper = (windowY - inputY);
+                    //Do all other bounds
+                    if (y >= upper) {
+                        var keyY = Math.floor((((y + offset) - (windowY - keyareaY)) * 4)/keyareaY);
+                        var keyX = Math.floor(((x * keyboard[keyY].length)/keyareaX));
+                        var key = keyboard[keyY][keyX];
+                        var str = $('#outputText').html() + key;
+                        $('#outputText').html(str);
+                    } else {
+                        $('#keyarea').css("display", "none");
+                    }       
+                }
+            });
+        });
+
+    </script>
+</body>
+
